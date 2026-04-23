@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Theme: read before first paint to prevent FOUC -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.dataset.theme = preferred;
+    })();
+  </script>
+  <meta name="description" content="JPAG — Designer & Developer crafting thoughtful digital experiences." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="JPAG — Portfolio" />
+  <meta property="og:description" content="Designer & Developer crafting thoughtful digital experiences." />
+  <title>JPAG — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="nav-logo">
+        <span class="logo-text">jpag</span>
+        <span class="logo-dot">.</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#work" class="nav-link" data-label="Work">Work</a>
+        <a href="#about" class="nav-link" data-label="About">About</a>
+        <a href="#contact" class="nav-link" data-label="Contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle light / dark">
+        <!-- Sun icon — shown in light mode -->
+        <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.22 3.22l1.06 1.06M11.72 11.72l1.06 1.06M11.72 4.28l1.06-1.06M3.22 12.78l1.06-1.06" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <!-- Moon icon — shown in dark mode -->
+        <svg class="theme-icon theme-icon--moon" width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M7.5 1.5A6 6 0 1 0 13.5 7.5 4.5 4.5 0 0 1 7.5 1.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Available for work</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-eyebrow reveal">
+        <span class="eyebrow-tag">Designer &amp; Developer</span>
+        <span class="eyebrow-divider">—</span>
+        <span class="eyebrow-year">Est. 2020</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line reveal" data-delay="0">Crafting digital</span>
+        <span class="title-line reveal italic" data-delay="1">experiences</span>
+        <span class="title-line reveal" data-delay="2">that endure.</span>
+      </h1>
+      <div class="hero-sub reveal" data-delay="3">
+        <p>I build products at the intersection of design and engineering —<br class="br-desktop" /> systems that feel inevitable once you encounter them.</p>
+      </div>
+      <div class="hero-cta reveal" data-delay="4">
+        <a href="#work" class="cta-link">
+          <span>View selected work</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="cta-arrow">
+            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#contact" class="cta-secondary">Let's talk</a>
+      </div>
+      <div class="hero-scroll reveal" data-delay="5">
+        <div class="scroll-indicator">
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">React</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">TypeScript</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Next.js</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Node.js</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Figma</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">PostgreSQL</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Framer Motion</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Python</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">GraphQL</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Docker</span>
+      <span class="marquee-sep">·</span>
+      <!-- duplicate -->
+      <span class="marquee-item">React</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">TypeScript</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Next.js</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Node.js</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Figma</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">PostgreSQL</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Framer Motion</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Python</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">GraphQL</span>
+      <span class="marquee-sep">·</span>
+      <span class="marquee-item">Docker</span>
+      <span class="marquee-sep">·</span>
+    </div>
+  </div>
+
+  <!-- Work -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label reveal">Selected Work</span>
+        <span class="section-count reveal">04</span>
+      </div>
+
+      <!-- Project 01 -->
+      <article class="project" id="project-01" data-index="01">
+        <div class="project-inner">
+          <div class="project-meta">
+            <span class="project-num">01</span>
+            <div class="project-tags">
+              <span class="tag">Design System</span>
+              <span class="tag">React</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h2 class="project-title">
+              <a href="#" class="project-link" id="project-link-01">
+                Horizon UI Kit
+                <span class="project-link-arrow">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </h2>
+            <p class="project-desc">A comprehensive design system built for scale — 200+ components, dark & light theming, and WCAG 2.1 accessibility baked in from the ground up.</p>
+            <div class="project-footer">
+              <span class="project-year">2025</span>
+              <span class="project-role">Lead Designer &amp; Engineer</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-divider"></div>
+      </article>
+
+      <!-- Project 02 -->
+      <article class="project" id="project-02" data-index="02">
+        <div class="project-inner">
+          <div class="project-meta">
+            <span class="project-num">02</span>
+            <div class="project-tags">
+              <span class="tag">SaaS</span>
+              <span class="tag">Full-stack</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h2 class="project-title">
+              <a href="#" class="project-link" id="project-link-02">
+                Playlist Tracker
+                <span class="project-link-arrow">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </h2>
+            <p class="project-desc">Full-stack SaaS application for tracking learning progress across YouTube playlists. Built with Next.js, Neon PostgreSQL, and JWT-authenticated role-based access.</p>
+            <div class="project-footer">
+              <span class="project-year">2024</span>
+              <span class="project-role">Solo Engineer</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-divider"></div>
+      </article>
+
+      <!-- Project 03 -->
+      <article class="project" id="project-03" data-index="03">
+        <div class="project-inner">
+          <div class="project-meta">
+            <span class="project-num">03</span>
+            <div class="project-tags">
+              <span class="tag">API</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h2 class="project-title">
+              <a href="#" class="project-link" id="project-link-03">
+                Meridian Analytics
+                <span class="project-link-arrow">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </h2>
+            <p class="project-desc">Real-time data pipeline and analytics dashboard processing 50M+ events/day. GraphQL API layer with intelligent query caching and sub-100ms p99 latency.</p>
+            <div class="project-footer">
+              <span class="project-year">2024</span>
+              <span class="project-role">Backend Engineer</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-divider"></div>
+      </article>
+
+      <!-- Project 04 -->
+      <article class="project" id="project-04" data-index="04">
+        <div class="project-inner">
+          <div class="project-meta">
+            <span class="project-num">04</span>
+            <div class="project-tags">
+              <span class="tag">Mobile</span>
+              <span class="tag">React Native</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h2 class="project-title">
+              <a href="#" class="project-link" id="project-link-04">
+                Pulse Health
+                <span class="project-link-arrow">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </h2>
+            <p class="project-desc">Health & wellness mobile app with personalized AI-driven recommendations. Shipped to 10K+ users within 3 months of launch.</p>
+            <div class="project-footer">
+              <span class="project-year">2023</span>
+              <span class="project-role">Product Engineer</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-divider"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label reveal">About</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-left">
+          <p class="about-text reveal">I'm a designer-developer hybrid who believes the best digital products are built at the seam where craft meets systems thinking.</p>
+          <p class="about-text reveal">I've spent the last 4 years shipping products people actually use — from early-stage startups to teams of 50. I care deeply about the invisible details: the 12ms transition, the word that feels just right, the spacing that makes a layout breathe.</p>
+          <p class="about-text reveal">When I'm not building, I'm probably obsessing over type specimens, reading Stripe's design changelog, or grinding on chess puzzles.</p>
+        </div>
+        <div class="about-right">
+          <div class="stat-grid">
+            <div class="stat reveal">
+              <div class="stat-value-line">
+                <span class="stat-num" data-target="4">0</span><span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-label">Years experience</span>
+            </div>
+            <div class="stat reveal">
+              <div class="stat-value-line">
+                <span class="stat-num" data-target="12">0</span><span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-label">Products shipped</span>
+            </div>
+            <div class="stat reveal">
+              <div class="stat-value-line">
+                <span class="stat-num" data-target="50">0</span><span class="stat-suffix">K</span>
+              </div>
+              <span class="stat-label">Users reached</span>
+            </div>
+            <div class="stat reveal">
+              <div class="stat-value-line">
+                <span class="stat-num" data-target="100">0</span><span class="stat-suffix">%</span>
+              </div>
+              <span class="stat-label">Client satisfaction</span>
+            </div>
+          </div>
+          <div class="skills-list reveal">
+            <div class="skill-row">
+              <span class="skill-category">Design</span>
+              <span class="skill-items">Figma, Framer, Prototyping, Motion</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-category">Frontend</span>
+              <span class="skill-items">React, Next.js, TypeScript, CSS</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-category">Backend</span>
+              <span class="skill-items">Node, Python, GraphQL, PostgreSQL</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-category">Infra</span>
+              <span class="skill-items">Docker, Vercel, AWS, GitHub CI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing / Blog -->
+  <section class="writing" id="writing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label reveal">Writing</span>
+        <a href="#writing" class="section-all reveal">All posts →</a>
+      </div>
+      <div class="post-list">
+        <a href="#" class="post reveal" id="post-01">
+          <div class="post-left">
+            <span class="post-date">Apr 2025</span>
+          </div>
+          <div class="post-right">
+            <span class="post-title">The invisible details that make great UIs feel alive</span>
+            <span class="post-read">5 min read</span>
+          </div>
+        </a>
+        <a href="#" class="post reveal" id="post-02">
+          <div class="post-left">
+            <span class="post-date">Feb 2025</span>
+          </div>
+          <div class="post-right">
+            <span class="post-title">Why I stopped using UI libraries and what I learned</span>
+            <span class="post-read">8 min read</span>
+          </div>
+        </a>
+        <a href="#" class="post reveal" id="post-03">
+          <div class="post-left">
+            <span class="post-date">Dec 2024</span>
+          </div>
+          <div class="post-right">
+            <span class="post-title">Building type systems that scale across products</span>
+            <span class="post-read">6 min read</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-top reveal">
+          <span class="section-label">Let's work together</span>
+        </div>
+        <h2 class="contact-heading">
+          <span class="reveal">Have a project</span>
+          <span class="reveal italic">in mind?</span>
+        </h2>
+        <p class="contact-sub reveal">I'm currently available for freelance work and full-time positions. Drop me a line and let's see if we can build something great.</p>
+        <div class="contact-cta reveal">
+          <a href="mailto:hello@jpag.dev" class="email-link" id="email-link">
+            <span class="email-text">hello@jpag.dev</span>
+            <svg class="email-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="contact-links reveal">
+          <a href="https://github.com" target="_blank" rel="noopener" class="social-link" id="social-github">GitHub</a>
+          <span class="social-sep">·</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link" id="social-linkedin">LinkedIn</a>
+          <span class="social-sep">·</span>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="social-link" id="social-twitter">Twitter</a>
+          <span class="social-sep">·</span>
+          <a href="#" class="social-link" id="social-resume">Résumé ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2025 JPAG</span>
+        <span class="footer-built">Built with obsession.</span>
+        <span class="footer-time" id="footer-time"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
