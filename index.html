@@ -40,6 +40,7 @@
       <div class="nav-links" id="nav-links">
         <a href="#work" class="nav-link" data-label="Work">Work</a>
         <a href="#about" class="nav-link" data-label="About">About</a>
+        <a href="#writing" class="nav-link" data-label="Writing">Writing</a>
         <a href="#contact" class="nav-link" data-label="Contact">Contact</a>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle light / dark">
@@ -145,132 +146,11 @@
     <div class="container">
       <div class="section-header">
         <span class="section-label reveal">Selected Work</span>
-        <span class="section-count reveal">04</span>
+        <span class="section-count reveal" id="work-count">04</span>
       </div>
 
-      <!-- Project 01 -->
-      <article class="project" id="project-01" data-index="01">
-        <div class="project-inner">
-          <div class="project-meta">
-            <span class="project-num">01</span>
-            <div class="project-tags">
-              <span class="tag">Design System</span>
-              <span class="tag">React</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h2 class="project-title">
-              <a href="#" class="project-link" id="project-link-01">
-                Horizon UI Kit
-                <span class="project-link-arrow">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            </h2>
-            <p class="project-desc">A comprehensive design system built for scale — 200+ components, dark & light theming, and WCAG 2.1 accessibility baked in from the ground up.</p>
-            <div class="project-footer">
-              <span class="project-year">2025</span>
-              <span class="project-role">Lead Designer &amp; Engineer</span>
-            </div>
-          </div>
-        </div>
-        <div class="project-divider"></div>
-      </article>
+      <div id="work-list"></div>
 
-      <!-- Project 02 -->
-      <article class="project" id="project-02" data-index="02">
-        <div class="project-inner">
-          <div class="project-meta">
-            <span class="project-num">02</span>
-            <div class="project-tags">
-              <span class="tag">SaaS</span>
-              <span class="tag">Full-stack</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h2 class="project-title">
-              <a href="#" class="project-link" id="project-link-02">
-                Playlist Tracker
-                <span class="project-link-arrow">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            </h2>
-            <p class="project-desc">Full-stack SaaS application for tracking learning progress across YouTube playlists. Built with Next.js, Neon PostgreSQL, and JWT-authenticated role-based access.</p>
-            <div class="project-footer">
-              <span class="project-year">2024</span>
-              <span class="project-role">Solo Engineer</span>
-            </div>
-          </div>
-        </div>
-        <div class="project-divider"></div>
-      </article>
-
-      <!-- Project 03 -->
-      <article class="project" id="project-03" data-index="03">
-        <div class="project-inner">
-          <div class="project-meta">
-            <span class="project-num">03</span>
-            <div class="project-tags">
-              <span class="tag">API</span>
-              <span class="tag">Python</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h2 class="project-title">
-              <a href="#" class="project-link" id="project-link-03">
-                Meridian Analytics
-                <span class="project-link-arrow">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            </h2>
-            <p class="project-desc">Real-time data pipeline and analytics dashboard processing 50M+ events/day. GraphQL API layer with intelligent query caching and sub-100ms p99 latency.</p>
-            <div class="project-footer">
-              <span class="project-year">2024</span>
-              <span class="project-role">Backend Engineer</span>
-            </div>
-          </div>
-        </div>
-        <div class="project-divider"></div>
-      </article>
-
-      <!-- Project 04 -->
-      <article class="project" id="project-04" data-index="04">
-        <div class="project-inner">
-          <div class="project-meta">
-            <span class="project-num">04</span>
-            <div class="project-tags">
-              <span class="tag">Mobile</span>
-              <span class="tag">React Native</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h2 class="project-title">
-              <a href="#" class="project-link" id="project-link-04">
-                Pulse Health
-                <span class="project-link-arrow">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            </h2>
-            <p class="project-desc">Health & wellness mobile app with personalized AI-driven recommendations. Shipped to 10K+ users within 3 months of launch.</p>
-            <div class="project-footer">
-              <span class="project-year">2023</span>
-              <span class="project-role">Product Engineer</span>
-            </div>
-          </div>
-        </div>
-        <div class="project-divider"></div>
-      </article>
     </div>
   </section>
 
@@ -329,8 +209,10 @@
             <div class="skill-row">
               <span class="skill-category">Infra</span>
               <span class="skill-items">Docker, Vercel, AWS, GitHub CI</span>
-            </div>
           </div>
+          
+          <div class="experience-block reveal" id="experience-list"></div>
+
         </div>
       </div>
     </div>
@@ -343,35 +225,7 @@
         <span class="section-label reveal">Writing</span>
         <a href="#writing" class="section-all reveal">All posts →</a>
       </div>
-      <div class="post-list">
-        <a href="#" class="post reveal" id="post-01">
-          <div class="post-left">
-            <span class="post-date">Apr 2025</span>
-          </div>
-          <div class="post-right">
-            <span class="post-title">The invisible details that make great UIs feel alive</span>
-            <span class="post-read">5 min read</span>
-          </div>
-        </a>
-        <a href="#" class="post reveal" id="post-02">
-          <div class="post-left">
-            <span class="post-date">Feb 2025</span>
-          </div>
-          <div class="post-right">
-            <span class="post-title">Why I stopped using UI libraries and what I learned</span>
-            <span class="post-read">8 min read</span>
-          </div>
-        </a>
-        <a href="#" class="post reveal" id="post-03">
-          <div class="post-left">
-            <span class="post-date">Dec 2024</span>
-          </div>
-          <div class="post-right">
-            <span class="post-title">Building type systems that scale across products</span>
-            <span class="post-read">6 min read</span>
-          </div>
-        </a>
-      </div>
+      <div class="post-list" id="posts-list"></div>
     </div>
   </section>
 
@@ -419,6 +273,9 @@
     </div>
   </footer>
 
+  <script src="data/projects.js"></script>
+  <script src="data/posts.js"></script>
+  <script src="data/experience.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

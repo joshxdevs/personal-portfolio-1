@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Theme: read before first paint to prevent FOUC -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.dataset.theme = preferred;
+    })();
+  </script>
+  <title>Loading… — JPAG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Reuse root variables and nav/footer styles from main site -->
+  <link rel="stylesheet" href="../style.css" />
+  <!-- Post-specific reading typography -->
+  <link rel="stylesheet" href="post.css" />
+  <!-- marked.js — Markdown parser, no build step needed -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../" class="nav-logo" id="nav-logo">
+        <span class="logo-text">jpag</span>
+        <span class="logo-dot">.</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="../#work" class="nav-link" data-label="Work">Work</a>
+        <a href="../#about" class="nav-link" data-label="About">About</a>
+        <a href="../#contact" class="nav-link" data-label="Contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post -->
+  <main class="post-main" id="post-main">
+    <div class="container post-container">
+      
+      <a href="../#writing" class="post-back-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="back-arrow">
+          <path d="M11 7H3M3 7L7.5 2.5M3 7L7.5 11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Writing
+      </a>
+
+      <header class="post-header" id="post-header">
+        <h1 class="post-title" id="post-title">Loading…</h1>
+        <div class="post-meta" id="post-meta">
+          <span id="post-date"></span>
+          <span class="post-meta-sep">·</span>
+          <span id="post-read"></span>
+        </div>
+      </header>
+
+      <article class="post-content" id="post-content">
+        <!-- JS renders markdown here -->
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2025 JPAG</span>
+        <span class="footer-built">Built with obsession.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Front-matter parser ──────────────────────────── */
+    function parseFrontMatter(raw) {
+      const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+      if (!match) return { meta: {}, content: raw };
+      const meta = {};
+      match[1].split('\n').forEach(line => {
+        const colon = line.indexOf(':');
+        if (colon === -1) return;
+        const key = line.slice(0, colon).trim();
+        const val = line.slice(colon + 1).trim();
+        if (key) meta[key] = val;
+      });
+      return { meta, content: match[2] };
+    }
+
+    /* ── Load and render post ─────────────────────────── */
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const slug   = params.get('post');
+
+      if (!slug) {
+        setError('No post specified.');
+        return;
+      }
+
+      try {
+        const res = await fetch(`posts/${slug}.md`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const raw = await res.text();
+
+        const { meta, content } = parseFrontMatter(raw);
+
+        document.title = (meta.title || slug) + ' — JPAG';
+        document.getElementById('post-title').textContent = meta.title || slug;
+        document.getElementById('post-date').textContent  = meta.date || '';
+        document.getElementById('post-read').textContent  = meta.readTime || '';
+
+        marked.setOptions({ breaks: false, gfm: true });
+        document.getElementById('post-content').innerHTML = marked.parse(content);
+
+      } catch (err) {
+        setError('Post not found or could not be loaded.');
+      }
+    }
+
+    function setError(msg) {
+      document.getElementById('post-title').textContent = '404 Not Found';
+      document.getElementById('post-content').innerHTML = `<p class="error-msg">${msg}</p>`;
+      document.getElementById('post-meta').style.display = 'none';
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>

@@ -4,6 +4,90 @@
 
 'use strict';
 
+// =========================================================
+// DATA RENDERING
+// =========================================================
+
+(function renderData() {
+  // 1. Render Projects
+  const workList = document.getElementById('work-list');
+  const workCount = document.getElementById('work-count');
+  if (workList && window.PROJECTS) {
+    if (workCount) {
+      workCount.textContent = window.PROJECTS.length < 10 ? `0${window.PROJECTS.length}` : window.PROJECTS.length;
+    }
+    
+    workList.innerHTML = window.PROJECTS.map(p => `
+      <article class="project reveal" id="project-${p.id}" data-index="${p.num}">
+        <div class="project-inner">
+          <div class="project-meta">
+            <span class="project-num">${p.num}</span>
+            <div class="project-tags">
+              ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="project-content">
+            <h2 class="project-title">
+              <a href="${p.live || p.github || '#'}" class="project-link" ${p.live || p.github ? 'target="_blank" rel="noopener"' : ''}>
+                ${p.title}
+                <span class="project-link-arrow">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </h2>
+            <p class="project-desc">${p.description}</p>
+            <div class="project-footer">
+              <span class="project-year">${p.year}</span>
+              <span class="project-role">${p.role || ''}</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-divider"></div>
+      </article>
+    `).join('');
+  }
+
+  // 2. Render Experience
+  const expList = document.getElementById('experience-list');
+  if (expList && window.EXPERIENCE) {
+    expList.innerHTML = `
+      <div class="skill-row" style="margin-top: 48px; border-top: 1px solid var(--border-color); padding-top: 32px;">
+        <span class="skill-category" style="margin-bottom: 24px; display: block;">Experience</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        ${window.EXPERIENCE.map(e => `
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+              <span style="font-size: 15px; font-weight: 500; color: var(--text-primary);">${e.role}</span>
+              <span style="font-size: 12px; color: var(--text-tertiary); font-family: var(--font-mono);">${e.period}</span>
+            </div>
+            <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">${e.company}</div>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">${e.description}</p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // 3. Render Posts
+  const postsList = document.getElementById('posts-list');
+  if (postsList && window.POSTS) {
+    postsList.innerHTML = window.POSTS.map((p, i) => `
+      <a href="writing/post.html?post=${p.slug}" class="post reveal" id="post-0${i + 1}">
+        <div class="post-left">
+          <span class="post-date">${p.date}</span>
+        </div>
+        <div class="post-right">
+          <span class="post-title">${p.title}</span>
+          <span class="post-read">${p.readTime}</span>
+        </div>
+      </a>
+    `).join('');
+  }
+})();
+
 /* ----------------------------------------------------------
    THEME TOGGLE
    ---------------------------------------------------------- */

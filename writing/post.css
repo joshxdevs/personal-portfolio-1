@@ -1,0 +1,164 @@
+/* =========================================================
+   POST CSS
+   Inherits base layout from ../style.css
+   ========================================================= */
+
+.post-main {
+  padding-top: calc(var(--nav-height) + clamp(40px, 8vw, 80px));
+  padding-bottom: clamp(80px, 12vw, 120px);
+  min-height: 100vh;
+}
+
+.post-container {
+  max-width: 680px;
+}
+
+.post-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: clamp(40px, 6vw, 60px);
+  transition: color var(--transition-fast);
+}
+.post-back-link:hover {
+  color: var(--text-primary);
+}
+.back-arrow {
+  transition: transform var(--transition-fast);
+}
+.post-back-link:hover .back-arrow {
+  transform: translateX(-4px);
+}
+
+.post-header {
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.post-title {
+  font-family: var(--font-sans);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+/* Markdown Content Styling */
+.post-content {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.post-content > * + * {
+  margin-top: 1.5em;
+}
+
+.post-content h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  letter-spacing: -0.01em;
+}
+
+.post-content h3 {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.post-content a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-color);
+  transition: text-decoration-color var(--transition-fast);
+}
+.post-content a:hover {
+  text-decoration-color: var(--text-primary);
+}
+
+.post-content strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.post-content em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.post-content blockquote {
+  border-left: 2px solid var(--border-hover);
+  padding-left: 20px;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: var(--text-tertiary);
+}
+
+.post-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+.post-content pre {
+  background: var(--surface-bg);
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  margin: 2em 0;
+}
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 24px;
+}
+.post-content li {
+  margin-bottom: 0.5em;
+}
+.post-content li::marker {
+  color: var(--text-tertiary);
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 4em 0;
+}
+
+.error-msg {
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
